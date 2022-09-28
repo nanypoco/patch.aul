@@ -91,10 +91,12 @@ namespace patch {
                 wcsncpy_s(lf.lfFaceName, 32, fontnameW, 31);
 
                 //fullnameをfontnameWに入れる 1が返ると失敗
+                EnumFontFamiliesExW(hdc, &lf, (FONTENUMPROCW)effep2, (LPARAM)&fontnameW, 0);
+                /*
                 if (EnumFontFamiliesExW(hdc, &lf, (FONTENUMPROCW)effep2, (LPARAM)&fontnameW, 0) == 1) {
-                    return -1;
+                    return r;
                 }
-
+                */
                 WideCharToMultiByte(CP_ACP, 0, fontnameW, -1, (char*)lParam, 32, NULL, NULL);
                 return r;
             }
