@@ -63,6 +63,8 @@
 #include "patch_fast_directionalblur.hpp"
 #include "patch_get_fontname.hpp"
 #include "patch_text_surrogate.hpp"
+
+
 #include "patch_rclickmenu_split.hpp"
 #include "patch_rclickmenu_delete.hpp"
 #include "patch_tra_change_drawfilter.hpp"
