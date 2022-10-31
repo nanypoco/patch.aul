@@ -16,6 +16,7 @@
 #pragma once
 #include "patch_text_surrogate.hpp"
 
+#ifdef PATCH_SWITCH_TEXT_SURROGATE
 namespace patch {
 
     int __stdcall text_surrogate_t::check_surrogate(USHORT currentChar, short* p) {
@@ -62,3 +63,4 @@ namespace patch {
         return GetGlyphOutlineW(hdc, uChar, fuFormat, lpgm, cjBuffer, pvBuffer, lpmat2);
     }
 }
+#endif

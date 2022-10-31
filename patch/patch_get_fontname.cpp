@@ -18,6 +18,7 @@
 //#include "gdiplus.h"
 //#include "iostream"
 
+#ifdef PATCH_SWITCH_GET_FONTNAME
 namespace patch {
 
     //初回のコンボボックス生成
@@ -128,3 +129,4 @@ namespace patch {
         return 1;
     }
 }
+#endif
