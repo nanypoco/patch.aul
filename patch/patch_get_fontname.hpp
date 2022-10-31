@@ -15,20 +15,24 @@
 
 #pragma once
 #include "macro.h"
-#include <Windows.h>
 #ifdef PATCH_SWITCH_GET_FONTNAME
 
+#include <Windows.h>
 #include "util_magic.hpp"
 #include "global.hpp"
 #include "config_rw.hpp"
-#include "cryptostring.hpp"
 
 namespace patch {
         inline class get_fontname_t {
             inline static const char key[] = "get_fontname";
-        public:
+
             bool enabled = true;
             bool enabled_i;
+
+            inline static bool surroFlag;
+            inline static USHORT codePoint;
+
+        public:
 
             static int CALLBACK enumfontfamproc_wrap(ENUMLOGFONTW* param_1, ENUMTEXTMETRICW* param_2, DWORD param_3, HDC param_4);
 
@@ -52,6 +56,7 @@ namespace patch {
                 OverWriteOnProtectHelper(GLOBAL::exedit_base + 0x8c320, 4).store_i32(0, &SendMessageA_wrap1_ptr);
                 //OverWriteOnProtectHelper(GLOBAL::exedit_base + 0x8bd07, 4).store_i32(0, &SendMessageA_wrap1_ptr);
                 OverWriteOnProtectHelper(GLOBAL::exedit_base + 0x8b958, 4).store_i32(0, &SendMessageA_wrap2_ptr);
+
             }
             void switching(bool flag) { enabled = flag; }
 
@@ -68,5 +73,5 @@ namespace patch {
                 cw.append(key, enabled);
             }
         } get_fontname;
-} // namespace patch
+}
 #endif // ifdef PATCH_SWITCH_GET_FONTNAME

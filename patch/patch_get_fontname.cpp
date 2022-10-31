@@ -16,9 +16,10 @@
 #pragma once
 #include "patch_get_fontname.hpp"
 //#include "gdiplus.h"
-#include "iostream"
+//#include "iostream"
 
 namespace patch {
+
     //初回のコンボボックス生成
     int WINAPI get_fontname_t::EnumFontFamiliesA_wrap(HDC hdc, LPLOGFONTA lplf, FONTENUMPROCA enumfontfamproc, LPARAM lpfam) {
         LOGFONTW lf{};
@@ -28,7 +29,7 @@ namespace patch {
 
     int CALLBACK get_fontname_t::enumfontfamproc_wrap(ENUMLOGFONTW* elf, ENUMTEXTMETRICW* metric, DWORD fonttype, HDC hdc) {
         LPCWSTR fontnameW;
-        char fontnameA[64];
+        //char fontnameA[64];
         int c;
         tagSIZE size{};
         LONG& cxMax = load_i32<LONG&>(GLOBAL::exedit_base + 0x23638c);
@@ -53,6 +54,8 @@ namespace patch {
     LRESULT WINAPI get_fontname_t::SendMessageA_wrap1(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam) {
         if (Msg == CB_SELECTSTRING) {
             int index = SendMessageA(hWnd, CB_FINDSTRINGEXACT, -1, lParam);
+
+            //見つからなければ元のフォント名を取得して再度検索
             if (index == CB_ERR) {
                 WCHAR fontnameW[32];
                 MultiByteToWideChar(CP_ACP, 0, (char*)lParam, -1, fontnameW, 32);
@@ -82,6 +85,7 @@ namespace patch {
         if (Msg == CB_GETLBTEXT) {
             char getName[64];
             LRESULT r = SendMessageA(hWnd, Msg, wParam, (LPARAM)getName);
+            //32バイト以上なら別名を取得
             if (strnlen_s(getName, 64) > 31) {
                 WCHAR fontnameW[32];
                 MultiByteToWideChar(CP_ACP, 0, getName, -1, fontnameW, 32);
@@ -103,7 +107,7 @@ namespace patch {
         }
         return SendMessageA(hWnd, Msg, wParam, lParam);
     }
-    
+
     int CALLBACK get_fontname_t::effep2(ENUMLOGFONTW* elf, ENUMTEXTMETRICW* metric, DWORD fonttype, LPARAM lParam) {
         /* GDI+で英語フォント名取得(未完)
         static Gdiplus::GdiplusStartupInput GdiplusStartupInput;

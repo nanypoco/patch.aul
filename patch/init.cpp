@@ -100,13 +100,6 @@ void init_t::InitAtExeditLoad() {
 #ifdef PATCH_SWITCH_TRA_AVIUTL_FILTER
 	patch::tra_aviutlfilter.init();
 #endif
-#ifdef PATCH_SWITCH_TRA_CHANGE_DRAWFILTER
-	patch::tra_change_drawfilter.init();
-#endif
-#ifdef PATCH_SWITCH_TRA_SPECIFIED_SPEED
-	patch::tra_specified_speed.init();
-#endif
-
 
 #ifdef PATCH_SWITCH_EXO_AVIUTL_FILTER
 	patch::exo_aviutlfilter.init();
@@ -135,7 +128,15 @@ void init_t::InitAtExeditLoad() {
 #ifdef PATCH_SWITCH_TEXT_OP_SIZE
 	patch::text_op_size.init();
 #endif
-	
+
+#ifdef PATCH_SWITCH_GET_FONTNAME
+	patch::get_fontname.init();
+#endif
+
+#ifdef PATCH_SWITCH_TEXT_SURROGATE
+	patch::text_surrogate.init();
+#endif
+
 #ifdef PATCH_SWITCH_IGNORE_MEDIA_PARAM_RESET
 	patch::ignore_media_param_reset.init();
 #endif
@@ -152,32 +153,12 @@ void init_t::InitAtExeditLoad() {
 	patch::helpful_msgbox.init();
 #endif
 
-#ifdef PATCH_SWITCH_FAILED_SJIS_MSGBOX
-	patch::failed_sjis_msgbox.init();
-#endif
-
-#ifdef PATCH_SWITCH_OBJ_COLORCORRECTION
-	patch::ColorCorrection.init();
-#endif
 #ifdef PATCH_SWITCH_OBJ_LENSBLUR
 	patch::LensBlur.init();
-#endif
-#ifdef PATCH_SWITCH_OBJ_NOISE
-	patch::Noise.init();
 #endif
 
 #ifdef PATCH_SWITCH_SETTINGDIALOG_EXCOLORCONFIG
 	patch::excolorconfig.init();
-#endif
-
-#ifdef PATCH_SWITCH_RCLICKMENU_SPLIT
-	patch::rclickmenu_split.init();
-#endif
-#ifdef PATCH_SWITCH_RCLICKMENU_DELETE
-	patch::rclickmenu_delete.init();
-#endif
-#ifdef PATCH_SWITCH_BLEND
-	patch::blend.init();
 #endif
 	
 	patch::setting_dialog();
@@ -200,9 +181,6 @@ void init_t::InitAtExeditLoad() {
 		#ifdef PATCH_SWITCH_FAST_TEXT
 			patch::fast::text.init();
 		#endif
-		#ifdef PATCH_SWITCH_FAST_CREATE_FIGURE
-			patch::fast::create_figure.init();
-		#endif
 		#ifdef PATCH_SWITCH_FAST_BORDER
 			patch::fast::Border.init();
 		#endif
@@ -212,9 +190,6 @@ void init_t::InitAtExeditLoad() {
 				if (patch::fast::cl.is_enabled_i()) {
 					#ifdef PATCH_SWITCH_FAST_POLORTRANSFORM
 						patch::fast::PolorTransform.init();
-					#endif
-					#ifdef PATCH_SWITCH_FAST_DISPLACEMENTMAP
-						patch::fast::DisplacementMap.init();
 					#endif
 					#ifdef PATCH_SWITCH_FAST_RADIATIONALBLUR
 						patch::fast::RadiationalBlur.init();

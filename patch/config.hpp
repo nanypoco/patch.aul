@@ -83,15 +83,15 @@ public:
             #ifdef PATCH_SWITCH_TRA_AVIUTL_FILTER
                 patch::tra_aviutlfilter.switch_load(cr);
             #endif
-            #ifdef PATCH_SWITCH_TRA_CHANGE_DRAWFILTER
-                patch::tra_change_drawfilter.switch_load(cr);
-            #endif
-            #ifdef PATCH_SWITCH_TRA_SPECIFIED_SPEED
-                patch::tra_specified_speed.switch_load(cr);
-            #endif
 		    #ifdef PATCH_SWITCH_TEXT_OP_SIZE
                 patch::text_op_size.switch_load(cr);
 		    #endif
+            #ifdef PATCH_SWITCH_GET_FONTNAME
+                patch::get_fontname.switch_load(cr);
+            #endif
+            #ifdef PATCH_SWITCH_TEXT_SURROGATE
+                patch::text_surrogate.switch_load(cr);
+            #endif
 		    #ifdef PATCH_SWITCH_IGNORE_MEDIA_PARAM_RESET
                 patch::ignore_media_param_reset.switch_load(cr);
 		    #endif
@@ -107,9 +107,6 @@ public:
 		    #ifdef PATCH_SWITCH_HELPFUL_MSGBOX
                 patch::helpful_msgbox.switch_load(cr);
 		    #endif
-		    #ifdef PATCH_SWITCH_FAILED_SJIS_MSGBOX
-                patch::failed_sjis_msgbox.switch_load(cr);
-		    #endif
 		    #ifdef PATCH_SWITCH_THEME_CC
                 patch::theme_cc.switch_load(cr);
 		    #endif
@@ -119,27 +116,12 @@ public:
 		    #ifdef PATCH_SWITCH_SETTINGDIALOG_MOVE
                 patch::setting_dialog_move.switch_load(cr);
 		    #endif
-            #ifdef PATCH_SWITCH_OBJ_COLORCORRECTION
-                patch::ColorCorrection.switch_load(cr);
-            #endif
             #ifdef PATCH_SWITCH_OBJ_LENSBLUR
                 patch::LensBlur.switch_load(cr);
-            #endif
-            #ifdef PATCH_SWITCH_OBJ_NOISE
-                patch::Noise.switch_load(cr);
             #endif
             #ifdef PATCH_SWITCH_SETTINGDIALOG_EXCOLORCONFIG
                 patch::excolorconfig.switch_load(cr);
 		    #endif
-            #ifdef PATCH_SWITCH_RCLICKMENU_SPLIT
-                patch::rclickmenu_split.switch_load(cr);
-            #endif
-            #ifdef PATCH_SWITCH_RCLICKMENU_DELETE
-                patch::rclickmenu_delete.switch_load(cr);
-            #endif
-            #ifdef PATCH_SWITCH_BLEND
-                patch::blend.switch_load(cr);
-            #endif
 		
 		    #ifdef PATCH_SWITCH_UNDO
                 patch::undo.switch_load(cr);
@@ -179,9 +161,6 @@ public:
                 #ifdef PATCH_SWITCH_FAST_TEXT
                     patch::fast::text.switch_load(cr);
                 #endif
-                #ifdef PATCH_SWITCH_FAST_CREATE_FIGURE
-                    patch::fast::create_figure.switch_load(cr);
-                #endif
                 #ifdef PATCH_SWITCH_FAST_BORDER
                     patch::fast::Border.switch_load(cr);
                 #endif
@@ -194,9 +173,6 @@ public:
 				    #endif
 				    #ifdef PATCH_SWITCH_FAST_POLORTRANSFORM
                         patch::fast::PolorTransform.switch_load(cr);
-				    #endif
-				    #ifdef PATCH_SWITCH_FAST_DISPLACEMENTMAP
-                        patch::fast::DisplacementMap.switch_load(cr);
 				    #endif
                     #ifdef PATCH_SWITCH_FAST_FLASH
                         patch::fast::Flash.switch_load(cr);
@@ -367,15 +343,15 @@ public:
             #ifdef PATCH_SWITCH_TRA_AVIUTL_FILTER
                 patch::tra_aviutlfilter.switch_store(switch_);
             #endif
-            #ifdef PATCH_SWITCH_TRA_CHANGE_DRAWFILTER
-                patch::tra_change_drawfilter.switch_store(switch_);
-            #endif
-            #ifdef PATCH_SWITCH_TRA_SPECIFIED_SPEED
-                patch::tra_specified_speed.switch_store(switch_);
-            #endif
 		    #ifdef PATCH_SWITCH_TEXT_OP_SIZE
                 patch::text_op_size.switch_store(switch_);
 		    #endif
+            #ifdef PATCH_SWITCH_GET_FONTNAME
+                patch::get_fontname.switch_store(switch_);
+            #endif
+            #ifdef PATCH_SWITCH_TEXT_SURROGATE
+                patch::text_surrogate.switch_store(switch_);
+            #endif
 		    #ifdef PATCH_SWITCH_IGNORE_MEDIA_PARAM_RESET
                 patch::ignore_media_param_reset.switch_store(switch_);
 		    #endif
@@ -391,9 +367,6 @@ public:
 		    #ifdef PATCH_SWITCH_HELPFUL_MSGBOX
                 patch::helpful_msgbox.switch_store(switch_);
 		    #endif
-		    #ifdef PATCH_SWITCH_FAILED_SJIS_MSGBOX
-                patch::failed_sjis_msgbox.switch_store(switch_);
-		    #endif
 		    #ifdef PATCH_SWITCH_THEME_CC
                 patch::theme_cc.switch_store(switch_);
 		    #endif
@@ -403,27 +376,12 @@ public:
 		    #ifdef PATCH_SWITCH_SETTINGDIALOG_MOVE
                 patch::setting_dialog_move.switch_store(switch_);
 		    #endif
-            #ifdef PATCH_SWITCH_OBJ_COLORCORRECTION
-                patch::ColorCorrection.switch_store(switch_);
-            #endif
             #ifdef PATCH_SWITCH_OBJ_LENSBLUR
                 patch::LensBlur.switch_store(switch_);
-            #endif
-            #ifdef PATCH_SWITCH_OBJ_NOISE
-                patch::Noise.switch_store(switch_);
             #endif
 		    #ifdef PATCH_SWITCH_SETTINGDIALOG_EXCOLORCONFIG
                 patch::excolorconfig.switch_store(switch_);
 		    #endif
-            #ifdef PATCH_SWITCH_RCLICKMENU_SPLIT
-                patch::rclickmenu_split.switch_store(switch_);
-            #endif
-            #ifdef PATCH_SWITCH_RCLICKMENU_DELETE
-                patch::rclickmenu_delete.switch_store(switch_);
-            #endif
-            #ifdef PATCH_SWITCH_BLEND
-                patch::blend.switch_store(switch_);
-            #endif
 
 		    #ifdef PATCH_SWITCH_UNDO
                 patch::undo.switch_store(switch_);
@@ -463,9 +421,6 @@ public:
                 #ifdef PATCH_SWITCH_FAST_TEXT
                     patch::fast::text.switch_store(switch_);
                 #endif
-                #ifdef PATCH_SWITCH_FAST_CREATE_FIGURE
-                    patch::fast::create_figure.switch_store(switch_);
-                #endif
                 #ifdef PATCH_SWITCH_FAST_BORDER
                     patch::fast::Border.switch_store(switch_);
                 #endif
@@ -478,9 +433,6 @@ public:
 				    #endif
 				    #ifdef PATCH_SWITCH_FAST_POLORTRANSFORM
                         patch::fast::PolorTransform.switch_store(switch_);
-				    #endif
-				    #ifdef PATCH_SWITCH_FAST_DISPLACEMENTMAP
-                        patch::fast::DisplacementMap.switch_store(switch_);
 				    #endif
                     #ifdef PATCH_SWITCH_FAST_FLASH
                         patch::fast::Flash.switch_store(switch_);

@@ -38,6 +38,7 @@
 #define PATCH_SWITCH_EXO_TRACKPARAM exo_trackparam
 #define PATCH_SWITCH_EXO_SPECIALCOLORCONV exo_specialcolorconv
 #define PATCH_SWITCH_TEXT_OP_SIZE text_op_size
+#define PATCH_SWITCH_GET_FONTNAME get_fontname
 #define PATCH_SWITCH_IGNORE_MEDIA_PARAM_RESET ignore_media_param_reset
 #define PATCH_SWITCH_FONT_DIALOG font_dialog
 #define PATCH_SWITCH_SCROLL_OBJDLG scroll_objdlg
@@ -94,21 +95,21 @@
 #endif //define PATCH_SWITCH_FAST
 
 #else // ifdef PATCH_INTERNAL
-#define PATCH_VERSION_STR "r42"
+#define PATCH_VERSION_STR "r41"
 
 #define PATCH_SWITCH_EXCEPTION_LOG
 #define PATCH_SWITCH_SYSINFO_MODIFY
 
 #define PATCH_SWITCH_ACCESS_KEY access_key
 #define PATCH_SWITCH_TRA_AVIUTL_FILTER tra_aviutl_filter
-#define PATCH_SWITCH_TRA_CHANGE_DRAWFILTER tra_change_drawfilter
-#define PATCH_SWITCH_TRA_SPECIFIED_SPEED tra_specified_speed
 #define PATCH_SWITCH_EXO_AVIUTL_FILTER exo_aviutl_filter
 #define PATCH_SWITCH_EXO_TRACK_MINUSVAL exo_track_minusval
 #define PATCH_SWITCH_EXO_SCENEIDX exo_sceneidx
 #define PATCH_SWITCH_EXO_TRACKPARAM exo_trackparam
 #define PATCH_SWITCH_EXO_SPECIALCOLORCONV exo_specialcolorconv
 #define PATCH_SWITCH_TEXT_OP_SIZE text_op_size
+#define PATCH_SWITCH_GET_FONTNAME get_fontname
+#define PATCH_SWITCH_TEXT_SURROGATE text_surrogate
 #define PATCH_SWITCH_IGNORE_MEDIA_PARAM_RESET ignore_media_param_reset
 #define PATCH_SWITCH_THEME_CC theme_cc
 #define PATCH_SWITCH_EXEDITWINDOW_SIZING exeditwindow_sizing
@@ -116,13 +117,7 @@
 #define PATCH_SWITCH_SETTINGDIALOG_EXCOLORCONFIG settingdialog_excolorconfig
 #define PATCH_SWITCH_CANCEL_BOOST_CONFLICT
 #define PATCH_SWITCH_WARNING_OLD_LSW
-#define PATCH_SWITCH_FAILED_SJIS_MSGBOX failed_sjis
-#define PATCH_SWITCH_OBJ_COLORCORRECTION obj_colorcorrection
 #define PATCH_SWITCH_OBJ_LENSBLUR obj_lensblur
-#define PATCH_SWITCH_OBJ_NOISE obj_noise
-#define PATCH_SWITCH_RCLICKMENU_SPLIT rclickmenu_split
-#define PATCH_SWITCH_RCLICKMENU_DELETE rclickmenu_delete
-#define PATCH_SWITCH_BLEND blend
 
 #define PATCH_SWITCH_UNDO undo
 #ifdef PATCH_SWITCH_UNDO
@@ -155,13 +150,11 @@
 	#define PATCH_SWITCH_FAST_SETTINGDIALOG fast_settingdialog
 	#define PATCH_SWITCH_FAST_EXEDITWINDOW fast_exeditwindow
 	#define PATCH_SWITCH_FAST_TEXT fast_text
-	#define PATCH_SWITCH_FAST_CREATE_FIGURE fast_create_figure
 	#define PATCH_SWITCH_FAST_BORDER fast_border
 
 	#define PATCH_SWITCH_CL cl
 	#ifdef PATCH_SWITCH_CL
 		#define PATCH_SWITCH_FAST_POLORTRANSFORM fast_polortransform
-		#define PATCH_SWITCH_FAST_DISPLACEMENTMAP fast_displacementmap
 		#define PATCH_SWITCH_FAST_RADIATIONALBLUR fast_radiationalblur
 		#define PATCH_SWITCH_FAST_FLASH fast_flash
 		#define PATCH_SWITCH_FAST_DIRECTIONALBLUR fast_directionalblur
