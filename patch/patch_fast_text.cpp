@@ -1,16 +1,16 @@
 /*
 	This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Lesser General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+	it under the terms of the GNU Lesser General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Lesser General Public License for more details.
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU Lesser General Public License for more details.
 
-    You should have received a copy of the GNU Lesser General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+	You should have received a copy of the GNU Lesser General Public License
+	along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "patch_fast_text.hpp"
@@ -29,14 +29,17 @@ namespace patch::fast {
 			height *= 2;
 		}
 
-		char fontname_v[LF_FACESIZE + 1];
+		WCHAR fontname_w[LF_FACESIZE];
+		MultiByteToWideChar(CP_ACP, 0, fontname, LF_FACESIZE * 2, fontname_w, LF_FACESIZE);
+
 		if (vertical) {
-			fontname_v[0] = '@';
-			strncpy_s(fontname_v + 1, LF_FACESIZE + 1, fontname, LF_FACESIZE);
-			fontname = fontname_v;
+			WCHAR fontname_v[LF_FACESIZE + 2];
+			fontname_v[0] = L'@';
+			wcsncpy_s(fontname_v + 1, LF_FACESIZE + 1, fontname_w, LF_FACESIZE);
+			*fontname_w = *fontname_v;
 		}
 
-		auto font = ::CreateFontA(height, 0, 0, 0, weight, italic, 0, 0, 1, 8, 0, 4, 0, fontname);
+		auto font = ::CreateFontW(height, 0, 0, 0, weight, italic, 0, 0, 1, 8, 0, 4, 0, fontname_w);
 		if (font == NULL)return currentFont = NULL;
 		LOGFONTW lfw;
 		::GetObjectW(font, sizeof(LOGFONTW), &lfw);
@@ -51,11 +54,13 @@ namespace patch::fast {
 	}
 
 	HFONT WINAPI text_t::CreateFontIndirectW(const LOGFONTW* lplf) {
+/*
 		char facename[LF_FACESIZE];
 		auto const facename_size = ::WideCharToMultiByte(CP_ACP, 0U, lplf->lfFaceName, -1, nullptr, 0, nullptr, nullptr);
 		if (::WideCharToMultiByte(CP_ACP, 0U, lplf->lfFaceName, -1, facename, sizeof(facename), nullptr, nullptr) == 0) {
 			return NULL;
 		}
+*/
 
 		std::lock_guard lock(text.mtx);
 		auto& map = text.map;
@@ -127,7 +132,7 @@ namespace patch::fast {
 		auto& font_map = text.map;
 		auto now = text_detail::gettime();
 
-	#ifdef _DEBUG
+#ifdef _DEBUG
 		size_t count = 0;
 		for (auto fitr = font_map.begin(); fitr != font_map.end();) {
 			if (now - fitr->second.last_use > elapse) {

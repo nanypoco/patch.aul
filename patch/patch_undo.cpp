@@ -14,6 +14,7 @@
 */
 
 #include "patch_undo.hpp"
+#include "patch.hpp"
 
 namespace patch {
 #ifdef PATCH_SWITCH_UNDO
@@ -112,7 +113,11 @@ namespace patch {
 
     int __stdcall undo_t::f8b97f(HWND hwnd, ExEdit::Filter* efp, WPARAM wparam, LPARAM lparam) {
         interval_set_undo(object(efp->processing) - 1, 1);
-        return SendMessageA(hwnd, CB_GETLBTEXT, wparam, lparam);
+        if (patch::get_fontname.is_enabled_i()) {
+            return patch::get_fontname.SendMessageA_wrap2(hwnd, CB_GETLBTEXT, wparam, lparam);
+        }else{
+            return SendMessageA(hwnd, CB_GETLBTEXT, wparam, lparam);
+        }
     }
 
     int __stdcall undo_t::f8ba87_8bad5(ExEdit::Filter* efp, HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam) {
