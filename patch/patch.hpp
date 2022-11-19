@@ -68,3 +68,5 @@
 #include "patch_blend.hpp"
 #include "patch_failed_sjis_msgbox.hpp"
 #include "patch_obj_colorcorrection.hpp"
+#include "patch_get_fontname.hpp"
+#include "patch_text_surrogate.hpp"
