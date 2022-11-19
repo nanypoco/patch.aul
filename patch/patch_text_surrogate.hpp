@@ -30,11 +30,11 @@ namespace patch {
         bool enabled = true;
         bool enabled_i;
 
-        inline static bool surroFlag;
+        inline static bool isReplacedCodePoint;
         inline static USHORT codePoint;
 
     public:
-        static int __stdcall check_surrogate(USHORT currentChar, short* pNextChar);
+        static int __stdcall check_surrogate(WCHAR currentChar, WCHAR* pNextChar);
 
         static DWORD WINAPI GetGlyphOutlineW_wrap(HDC hdc, UINT uChar, UINT fuFormat, LPGLYPHMETRICS lpgm, DWORD cjBuffer, LPVOID pvBuffer, const MAT2* lpmat2);
         inline static auto GetGlyphOutlineW_wrap_ptr = &GetGlyphOutlineW_wrap;
@@ -51,14 +51,16 @@ namespace patch {
                 h.replaceNearJmp(2, cursor);
 
                 static const char code_put[] =
-                    "\x0f\x84XXXX"                  // JZ exedit_base + 0x50583
+                    "\x0f\x84XXXX"                  // JZ exedit_base + 0x50583     // 元のJNZでやってたやつ('<'かどうか)
                     "\x56"                          // PUSH ESI
                     "\x50"                          // PUSH EAX
                     "\xe8XXXX"                      // CALL check_surrogate
                     "\x85\xc0"                      // TEST EAX,EAX
-                    "\x66\x8b\x46\xfe"              // MOV AX,DWORD PTR [ESI - 4]
-                    "\x74\x0a"                      // JZ is_not_surrogate
-                    "\x83\xc6\x02"                  // ADD ESI,0x2
+                    "\x89\xc2"                      // MOV EDX,EAX
+                    "\x66\x8b\x46\xfe"              // MOV AX,WORD PTR [ESI - 0x2]
+                    "\x74\x0b"                      // JZ is_not_surrogate
+                    "\x01\xd6"                      // ADD ESI,EDX
+                    "\x01\xd6"                      // ADD ESI,EDX
                     "\x89\xB4\x24\x84\x01\x00\x00"  // MOV DWORD PTR [ESP+0x184],ESI
                     // is_not_surrogate:
                     "\xe9XXXX"                      // JMP exedit_base + 0x50ba4
