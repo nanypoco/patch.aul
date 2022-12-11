@@ -24,7 +24,7 @@
 #include "config_rw.hpp"
 
 namespace patch {
-    // 長いフォント名を正常に展開できないのを直す
+    // 長いフォント名を正常に展開できないのをどうにかする
     inline class get_fontname_t {
         inline static const char key[] = "get_fontname";
 
@@ -33,9 +33,7 @@ namespace patch {
 
         inline static bool surroFlag;
         inline static USHORT codePoint;
-
-    public:
-
+	    
         static int CALLBACK enumfontfamproc_wrap(ENUMLOGFONTW* param_1, ENUMTEXTMETRICW* param_2, DWORD param_3, HDC param_4);
 
         static int WINAPI EnumFontFamiliesA_wrap(HDC hdc, LPLOGFONTA lplf, FONTENUMPROCA enumfontfamproc, LPARAM lpfam);
@@ -50,6 +48,7 @@ namespace patch {
         static int CALLBACK effep1(ENUMLOGFONTW* elf, ENUMTEXTMETRICW* metric, DWORD fonttype, LPARAM lParam);
         static int CALLBACK effep2(ENUMLOGFONTW* elf, ENUMTEXTMETRICW* metric, DWORD fonttype, LPARAM lParam);
 
+    public:
         void init() {
             enabled_i = enabled;
             if (!enabled_i)return;
