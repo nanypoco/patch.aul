@@ -32,12 +32,13 @@ namespace patch {
 
         inline static bool isReplacedCodePoint;
         inline static USHORT codePoint;
-
-    public:
+        
         static int __stdcall check_surrogate(WCHAR currentChar, WCHAR* pNextChar);
-
+        
         static DWORD WINAPI GetGlyphOutlineW_wrap(HDC hdc, UINT uChar, UINT fuFormat, LPGLYPHMETRICS lpgm, DWORD cjBuffer, LPVOID pvBuffer, const MAT2* lpmat2);
         inline static auto GetGlyphOutlineW_wrap_ptr = &GetGlyphOutlineW_wrap;
+
+    public:
 
         void init() {
             enabled_i = enabled;
